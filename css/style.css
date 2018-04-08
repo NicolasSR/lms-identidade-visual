@@ -85,6 +85,11 @@ footer div {
     margin-left: auto;
 }
 
+.conteudo h1 {
+    font-size: 25px;
+    color: #1523B2;
+}
+
 .linha {
     /* margin-right: -15px;
     margin-left: -15px; */
@@ -142,6 +147,61 @@ footer div {
 .sociais {
     color: #00008B;
     font-weight: bold;
+}
+
+.text-center {
+    text-align: center;
+}
+
+#premios {
+    margin-bottom: 50px;
+}
+
+#premios h2 {
+    color: #E1BA0C;
+    text-align: center;
+}
+
+.frase-reconhecimento {
+    width: 65%;
+    margin: auto;
+}
+
+.frase-reconhecimento p {
+    line-height: 1.7;
+    text-align: justify;
+}
+
+.img-centro {
+    margin-left: 30%;
+}
+
+#noticias {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#noticias p {
+    font-weight: bold;
+}
+
+#noticias a {
+    text-decoration: none;
+    font-weight: bold;
+    color: blue;
+}
+
+#noticias a:hover{
+    text-decoration: underline;
+}
+
+#depoimentos {
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.depoimento{
+    font-style: italic;
 }
 
 .clearfix:before,
