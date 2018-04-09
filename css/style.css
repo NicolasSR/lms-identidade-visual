@@ -222,3 +222,6 @@ footer div {
 .linha:after {
     clear: both;
 }
+#detailssystem{
+    text-align: justify;
+}
