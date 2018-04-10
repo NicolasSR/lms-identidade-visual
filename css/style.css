@@ -247,3 +247,22 @@ footer div {
 .linha:after {
     clear: both;
 }
+#detailssystem{
+    text-align: justify;
+}
+.textSystem{
+    text-align: center;
+    color:#1E90FF;
+    font-size: 20px;
+}
+#line{
+    color: #1E90FF;
+}
+.detailscurso{
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    color: #1E90FF;
+}
+.Titles{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: #2F4F4F;
+}
