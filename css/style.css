@@ -204,6 +204,7 @@ footer div {
     font-style: italic;
 }
 
+
 .img-cursos {
     width: 100%;
     height: 300px;
@@ -258,6 +259,67 @@ footer div {
 
 .link-disciplina {
     text-decoration: none;
+}
+
+.login {
+    background-color: white;
+    margin: 0 auto;
+    width: 50%;
+    border-radius: 4px;
+    box-shadow: 1px 3px 1px 3px white;
+    padding: 3px 5px 3px 5px;
+    margin-top: 10%;
+}
+
+.login h1 {
+    text-align: center;
+    color: #1E90FF;
+}
+
+.form-grupo {
+    margin: 20px 20px 0 20px;
+}
+
+.form-grupo label {
+    font-weight: bold;
+    margin-left: 1%;
+}
+
+.form-grupo input {
+    width: 100%;
+    height: 30px;
+    border: gray 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-grupo input, select {
+    outline: 0;
+}
+
+.btn {
+    cursor: pointer;
+    height: 30px;
+    background-color: #1E90FF;
+    border: 1px #1E90FF solid;
+    border-radius: 5px;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-weight: bold;
+}
+
+.form {
+    margin: 0 auto;
+    width: 80%;
+}
+
+.center {
+    margin: 0 auto;
+}
+
+.checkbox {
+    margin-top: 20px;
 }
 
 .clearfix:before,
