@@ -12,42 +12,68 @@
     <nav>
         <ul class="menu">
             <li>&nbsp;&nbsp;&nbsp;</li>
-            <li><a href="#">LMS</a></li>
-            <li><a href="#">Cursos</a></li>
-            <li><a href="#">Novo Curso</a></li>
-            <li><a href="#">Nova Disciplina</a></li>
-            <li class="right"><a href="#">Login</a></li>
+            <li><a href="index.html">LMS</a></li>
+            <li><a href="cursos.html">Cursos</a></li>
+            <li><a href="novo-curso.html">Novo Curso</a></li>
+            <li><a href="nova-disciplina.html">Nova Disciplina</a></li>
+            <li class="right"><a href="login.html" target="_blank">Login</a></li>
             <li class="right">&nbsp;</li>
         </ul>
     </nav>
     
     <div class="conteudo">
-        <h1>Novo Curso</h1>
-        <br>
+        <h1 class="text-center">Novo Curso</h1>
+        <hr>
+
         <form>
-            Nome do Curso <br>
-            <input type="text" name="Nome do Curso"> <br> 
-            Sobre o Curso <br>
-            <input type="text" name="Sobre o Curso"> <br> 
-            Duração do Curso <br>
-            <input type="text" name="Duração do Curso"> <br> 
-            Carga Horária <br>
-            <input type="text" name="Carga Horária"> <br> 
-            Modalidade <br>
-            <input type="text" name="Modalidade"> <br>
-            Unidade <br>
-            <input type="text" name="Unidade"> <br>  
-            Período <br>
-            <input type="text" name="Período"> <br> 
-            Mensalidade <br>
-            <input type="text" name="Mensalidade"> <br> 
-            <input type="submit" value="Cadastrar"> <br> 
-
-        
-
+            <div class="linha">
+                <div class="col-md-6">
+                    <div class="form-grupo">
+                        <label for="nome">Nome do Curso</label> <br>
+                        <input type="text" name="Nome do Curso">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="duracao">Duração do Curso </label><br>
+                        <input type="text" name="Duração do Curso">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="carga=horaria">Carga Horária</label> <br>
+                        <input type="text" name="Carga Horária">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="modalidade">Modalidade</label> <br>
+                        <input type="text" name="Modalidade">
+                    </div>
+                    <div class="form-grupo">
+                        <label for="Unidade">Unidade</label><br>
+                        <input type="text" name="Unidade"> <br>  
+                    </div>
+                    <div class="form-grupo">
+                        <label for="periodo">Período</label>
+                        <input type="text" name="Período"><br> 
+                    </div>
+                    <div class="form-grupo">
+                        <label for="mensalidade">Mensalidade</label> <br>
+                        <input type="text" name="Mensalidade">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-grupo">
+                        <label for="sobre">Sobre o Curso</label><br>
+                        <textarea name="sobre-curso" id="" cols="30" rows="20"></textarea>
+                    </div>
+                    <!-- <input type="text" name="Sobre o Curso"> <br>  -->
+                </div>
+            </div>
+            <br>
+            <div class="form-grupo">
+                <button type="input" class="btn" style="margin-left: 50%;">Cadastrar Curso</button>
+            </div>
         </form>
+        <br>
+        <hr>
+        <br>
     </div>
-
     <footer>
         <div>
             <div class="linha">

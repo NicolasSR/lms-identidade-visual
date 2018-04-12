@@ -293,17 +293,24 @@ footer div {
     padding: 5px;
 }
 
-.form-grupo input, select {
+.form-grupo textarea {
+    width: 100%;
+    height: 100%;
+    border: gray 2px solid;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.form-grupo input,textarea, select {
     outline: 0;
 }
 
 .btn {
     cursor: pointer;
-    height: 30px;
+    /* height: 30px; */
     background-color: #1E90FF;
     border: 1px #1E90FF solid;
     border-radius: 5px;
-    width: 100px;
     height: 40px;
     color: white;
     font-weight: bold;
@@ -314,8 +321,9 @@ footer div {
     width: 80%;
 }
 
-.center {
-    margin: 0 auto;
+.btn-login {
+    margin-left: 35%;
+    width: 100px;
 }
 
 .checkbox {
