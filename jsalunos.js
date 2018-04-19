@@ -31,10 +31,11 @@ function(event){
     }
     if (resulIdade>=17){
         resp = true;
-        desc='Idade Válida'
     }else{
         resp=false;
-        desc='Apenas alunos com idade igual ou superior a 17 podem realizar o cadastro'
+        desc='Apenas alunos com idade igual ou superior a 17 podem realizar o cadastro';
+        
+        
     }
     
     alert(desc);
@@ -45,17 +46,21 @@ function(event){
             resp=true;
             senha = confereSenha(senhaAluno,confirmarSenha);
             if(senha==true){
-                caracnum = verificarNumeLet(senhaAluno);
+                caracnum = vSenha(senhaAluno);
 
                 if(caracnum==true){
                     resp=true;
                 }else{
                     resp=false;
+                    alert("É necessário possuir uma senha com ao menos um caracter e um número:");
+                    document.getElementById("senha").values="";
+                    document.getElementById("senha").focus();
+
                 }
                 
             }else{
                 alert("As senhas não conscidem");
-                senhaAluno = document.getElementById("senha").focus()
+                senhaAluno = document.getElementById("senha").focus();
                 
                 resp=false;
             }
@@ -66,6 +71,7 @@ function(event){
     }
 
     return resp
+    limpaTela();
 }
 
 function validaCPF(cpf)
@@ -97,7 +103,7 @@ function validaCPF(cpf)
           resultado = soma % 11 < 2 ? 0 : 11 - soma % 11;
           if (resultado != digitos.charAt(1))
                 return false;
-          alert("CPF Válido!");
+          
           return true;
 
           }
@@ -111,13 +117,22 @@ function validaCPF(cpf)
             return false;
         }
   }
-function verificarNumeLet(senha){
-    if(!isNaN(senha) && isNaN(senha)){
-        alert("Letras e numeros");
-        return false;
-    }else{
-        alert("Não tem as duas opções")
-        return true;
-    }
 
+
+function limpaTela(){
+    return document.getElementById("senha").values="";
+}
+function vSenha(senhaAluno){
+    numLetras = 0;
+    num = 0;
+    var char = senhaAluno.split('');
+    for(let car of char){
+        if (car.match(/\d/)) num++;
+        else if (car.match(/\w/)) numLetras++;
+    }
+    if((num>=1)&&(numLetras>=1)){
+        return true;
+    }else{
+        return false;
+    }
 }
