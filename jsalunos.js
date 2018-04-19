@@ -34,7 +34,8 @@ function(event){
     }else{
         resp=false;
         desc='Apenas alunos com idade igual ou superior a 17 podem realizar o cadastro';
-        
+        alert(desc);
+        limpaTela();
         
     }
 
@@ -52,13 +53,14 @@ function(event){
                 }else{
                     resp=false;
                     alert("É necessário possuir uma senha com ao menos um caracter e um número:");
-                    document.getElementById("senha").values="";
+                    limpaTela();
                     document.getElementById("senha").focus();
 
                 }
                 
             }else{
                 alert("As senhas não conscidem");
+            
                 senhaAluno = document.getElementById("senha").focus();
                 
                 resp=false;
@@ -66,6 +68,7 @@ function(event){
         }else{
             resp=false;
             alert("CPF Inválido!")
+            document.getElementById("cpfaluninho").focus();
         }
     }
 
@@ -119,7 +122,14 @@ function validaCPF(cpf)
 
 
 function limpaTela(){
-    return document.getElementById("senha").values="";
+    document.getElementById("senha").value="";
+    document.getElementById("confirmSenha").value="";
+    document.getElementById("loginAlunos").value="";
+    document.getElementById("nomeAluno").value="";
+    document.getElementById("email").value="";
+    document.getElementById("celular").value="";
+    document.getElementById("nascimentoAluno").value="";
+    document.getElementById("cpfaluninho").value="";
 }
 function vSenha(senhaAluno){
     numLetras = 0;
