@@ -37,8 +37,7 @@ function(event){
         
         
     }
-    
-    alert(desc);
+
 
     if (resp==true){
         x = (validaCPF(cpfAluno));
