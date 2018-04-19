@@ -314,6 +314,7 @@ footer div {
     height: 40px;
     color: white;
     font-weight: bold;
+    margin-bottom: 20px;
 }
 
 .form {
@@ -328,6 +329,59 @@ footer div {
 
 .checkbox {
     margin-top: 20px;
+}
+
+.matricula {
+    color: #1E90FF;
+}
+
+.alunos {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.alunos {
+    background: #fff;
+    /* border-top: 1px solid #a5a5a5; */
+    border-bottom: 1px solid #a5a5a5;
+}
+/* tr:hover {
+    background-color:#3d80df;
+    color: #fff;
+} */
+
+.alunos tr:hover {
+    background-color: transparent;
+    color: inherit;
+}
+
+.alunos tr:nth-child(even) {
+    background-color: #ddd;
+}
+
+.alunos th {
+    font-weight: bold;
+    text-align: left;
+}
+
+.alunos th, td {
+    padding: 12px;
+}
+
+.alunos tr {
+    border-top: 1px solid #a5a5a5;
+}
+
+.aprovado {
+    font-weight: bold;
+    color: green;
+}
+
+.cancelado {
+    font-weight: bold;
+    color: red;
+    margin-left: 10px;
 }
 
 .clearfix:before,
