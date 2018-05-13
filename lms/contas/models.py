@@ -26,7 +26,7 @@ class Professor(models.Model):
     nome = models.CharField('Nome', db_column='NOME', max_length=45)
     email = models.CharField('E-mail', db_column='EMAIL', max_length=70)
     celular = models.CharField('Celular', db_column='CELULAR', max_length=15)
-    data_expiracao = models.DateField('Data Expiração', db_column='DTEXPIRACAO')
+    data_expiracao = models.DateField('Data Expiração', db_column='DTEXPIRACAO', blank=True, null=True)
     apelido = models.CharField('Apelido', db_column='APELIDO', max_length=20)
 
 class Mensagem(models.Model):
