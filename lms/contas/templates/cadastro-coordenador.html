@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Cadastro de Coordenadores</h1>
+    <hr>
+    <form action="{% url 'contas:cadastrar-coordenador' %}" method="post">
+        <div class="linha">
+            {% csrf_token %}
+            <input type="number" name="id" hidden value="{{ coordenador.id }}">
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="login">Login:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20 "maxlength="20"
+                    size="20" name="login" id="login" required value="{{ coordenador.login }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="nome">Nome:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" maxlength="45"
+                    size="45" name="nome" id="nome" required value="{{ coordenador.nome }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="email">E-mail:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" maxlength="70"
+                    size="70" name="email" id="email" required value="{{ coordenador.email }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="celular">Celular:</label> <br>
+                    <input type="text" maxlength="15"
+                    size="15" name="celular" id="celular" value="{{ coordenador.celular }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="senha">Senha:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="password" maxlength="8" size="8" name="senha" required
+                    id="senha" value="{{ coordenador.senha }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="confirmSenha">Confirmar Senha:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="password" maxlength="8"
+                    size="8" name="confirmSenha" required
+                    id="confirmSenha" value="{{ coordenador.senha }}">
+                </div>
+                <p class="ast">* informações obrigatórias</p>
+                <div class="form-grupo">
+                <button type="submit" class="btn" style="margin-left: 50%;">Salvar Coordenador</button>
+            </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
