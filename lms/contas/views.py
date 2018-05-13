@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from contas.models import Aluno, Coordenador, Professor
+from contas.models import Aluno, Coordenador, Professor, Mensagem
+from datetime import datetime
 
 def cadastrar_alunos(request):
     if request.method == 'GET':
@@ -88,3 +89,32 @@ def excluir_professor(request, professor_id):
     professor = Professor.objects.get(id=professor_id)
     professor.delete()
     return redirect('/contas/lista-professores')
+
+def cadastrar_mensagem(request):
+    if request.method == 'GET':
+        return render(request, 'cadastro-mensagem.html')
+    else:
+        if request.POST.get('id'):
+            mensagem = Mensagem(id=request.POST.get('id'), referencia=request.POST.get('referencia'), conteudo=request.POST.get('conteudo'),
+                                assunto=request.POST.get('assunto'), status='Enviado', data_envio=request.POST.get('envio'),
+                                idaluno=Aluno.objects.get(id=1), idprofessor=Professor.objects.get(id=1))
+            mensagem.save()
+        else:
+            mensagem = Mensagem(referencia=request.POST.get('referencia'), conteudo=request.POST.get('conteudo'),
+                                assunto=request.POST.get('assunto'), status='Enviado', data_envio=datetime.today(),
+                                idaluno=Aluno.objects.get(id=1), idprofessor=Professor.objects.get(id=1))
+            mensagem.save()
+        return redirect('/contas/lista-mensagens')
+
+def listar_mensagens(request):
+    return render(request, 'lista-mensagens.html', {'mensagens': Mensagem.objects.all()})
+
+def alterar_mensagem(request, mensagem_id):
+    mensagem = Mensagem.objects.get(id=mensagem_id)
+    envio = str(mensagem.data_envio)
+    return render(request, 'cadastro-mensagem.html', {'mensagem': mensagem, 'envio': envio})
+
+def excluir_mensagem(request, mensagem_id):
+    mensagem = Mensagem.objects.get(id=mensagem_id)
+    mensagem.delete()
+    return redirect('/contas/lista-mensagens')

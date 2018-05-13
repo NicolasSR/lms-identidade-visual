@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Enviar Mensagem</h1>
+    <hr>
+    <form action="{% url 'contas:cadastrar-mensagem' %}" method="post">
+        <div class="linha">
+            {% csrf_token %}
+            <input type="number" name="id" hidden value="{{ mensagem.id }}">
+            <input type="text" name="envio" hidden value="{{ envio }}">
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="assunto">Assunto:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20 "maxlength="20"
+                    size="20" name="assunto" id="assunto" required value="{{ mensagem.assunto }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="referencia">Referência:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20 "maxlength="20"
+                    size="20" name="referencia" id="referencia" required value="{{ mensagem.referencia }}">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-grupo">
+                    <label for="conteudo">Contéudo:</label>
+                    <label class="ast">*</label> <br>
+                    <textarea type="text" rows="15"
+                         name="conteudo" id="conteudo" required>
+                        {{ mensagem.conteudo }}
+                    </textarea>
+                </div>
+            </div>
+            <br>
+            <div class="form-grupo">
+                    <button type="submit" class="btn" style="margin-left: 50%;">Salvar Mensagem</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
