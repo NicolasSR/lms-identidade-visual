@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Cadastro de Atividades</h1>
+    <hr>
+
+    <form action="{% url 'restrito:cadastrar-atividade' %}" method="post">
+        <div class="linha">
+            {% csrf_token %}
+            <input type="number" name="id" hidden value="{{ atividade.id }}">
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="titulo">Titulo:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20"
+                    size="20" name="titulo" id="titulo" required value="{{ atividade.titulo }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="tipo">Tipo:</label>
+                    <label class="ast">*</label> <br>
+                    <select name="tipo">
+                        <option value="Resposta Aberta" {% if atividade.tipo == 'Resposta Aberta' %}selected{% endif %}>
+                            Resposta Aberta</option>
+                        <option value="Teste" {% if atividade.tipo == 'Teste' %}selected{% endif %}>Teste</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" size="20"
+                    size="20" name="descricao" id="descricao" value="{{ atividade.descricao }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="extras">Extras:</label>
+                    <input type="text" size="20"
+                    size="20" name="extras" id="extras" value="{{ atividade.extras }}">
+                </div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="col-md-12">
+                <div class="form-grupo">
+                    <label for="conteudo">Conteúdo:</label>
+                    <textarea name="conteudo" rows="10">
+                        {{ atividade.conteudo }}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-grupo">
+            <button type="submit" class="btn" style="margin-left: 50%;">Salvar Atividade</button>
+        </div>
+    </form>
+{% endblock %}

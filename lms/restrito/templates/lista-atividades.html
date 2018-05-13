@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Disciplinas</h1>
+
+    <a href="{% url 'restrito:cadastrar-atividade' %}" class="botao">Nova Atividade</a>
+    <br />
+    <table id="disciplina" class="alunos">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Descrição</th>
+                <th>Professor</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for atividade in atividades %}
+                <tr>
+                    <td>{{ atividade.titulo }}</td>
+                    <td>{{ atividade.descricao }}</td>
+                    <td>{{ atividade.idprofessor.nome }}</td>
+                    <td>
+                        <a href="{% url 'restrito:alterar-atividade' atividade.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'restrito:excluir-atividade' atividade.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ atividade.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir atividade?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}
