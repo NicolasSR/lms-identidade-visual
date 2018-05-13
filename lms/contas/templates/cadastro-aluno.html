@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Cadastro de Alunos</h1>
+    <hr>
+
+    <form action="{% url 'contas:cadastrar-aluno' %}" method="post" id="cadastro-aluno">
+        <div class="linha">
+            {% csrf_token %}
+            <input type="number" name="id" hidden value="{{ aluno.id }}">
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="ra">RA:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20 "maxlength="20"
+                    size="20" name="ra" id="ra" required value="{{ aluno.ra }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="login">Login:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20 "maxlength="20"
+                    size="20" name="login" id="login" required value="{{ aluno.login }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="nome">Nome:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" maxlength="45"
+                    size="45" name="nome" id="nome" required value="{{ aluno.nome }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="email">E-mail:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" maxlength="70"
+                    size="70" name="email" id="email" required value="{{ aluno.email }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="celular">Celular:</label> <br>
+                    <input type="text" maxlength="15"
+                    size="15" name="celular" id="celular" value="{{ aluno.celular }}">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="nascimento">Nascimento:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="date" id="nascimento" name="nascimento" required value="{{ nascimento }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="cpf">CPF:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" maxlength="13" size="13" required id="cpf" name="cpf" value="{{ aluno.cpf }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="senha">Senha:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="password" maxlength="8" size="8" name="senha" required
+                    id="senha" value="{{ aluno.senha }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="confirmSenha">Confirmar Senha:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="password" maxlength="8"
+                    size="8" name="confirmSenha" required
+                    id="confirmSenha" value="{{ aluno.senha }}">
+                </div>
+                <p class="ast">* informações obrigatórias</p>
+            </div>
+            <br>
+            <br>
+            <div class="form-grupo">
+                <button type="submit" class="btn" style="margin-left: 50%;">Salvar Aluno</button>
+            </div>
+        </div>
+    </form>
+{% endblock %}
