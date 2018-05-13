@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Cursos</h1>
+
+    <a href="{% url 'curriculo:cadastrar-curso' %}" class="botao">Novo Curso</a>
+    <br />
+    <table id="cursos" class="alunos">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for curso in cursos %}
+                <tr>
+                    <td>{{ curso.nome }}</td>
+                    <td>
+                        <a href="{% url 'curriculo:altera-curso' curso.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'curriculo:excluir-curso' curso.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ curso.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir curso?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}

@@ -2,7 +2,7 @@ from django.db import models
 from contas.models import Coordenador
 
 class Curso(models.Model):
-    nome = models.CharField('Nome', db_column='NOME', max_length=30)
+    nome = models.CharField('Nome', db_column='NOME', max_length=100)
 
 class Disciplina(models.Model):
     nome = models.CharField('Nome', db_column='NOME', unique=True, max_length=30)
