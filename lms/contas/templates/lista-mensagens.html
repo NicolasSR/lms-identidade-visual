@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Mensagens</h1>
+
+    <a href="{% url 'contas:cadastrar-mensagem' %}" class="botao">Nova Mensagem</a>
+    <br />
+    <table id="mensagens" class="alunos">
+        <thead>
+            <tr>
+                <th>Assunto</th>
+                <th>Referência</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for mensagem in mensagens %}
+                <tr>
+                    <td>{{ mensagem.assunto }}</td>
+                    <td>{{ mensagem.referencia }}</td>
+                    <td>{{ mensagem.status }}</td>
+                    <td>
+                        <a href="{% url 'contas:altera-mensagem' mensagem.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'contas:excluir-mensagem' mensagem.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ mensagem.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir professor?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}

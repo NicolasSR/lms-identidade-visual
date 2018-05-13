@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Alunos</h1>
+
+    <a href="{% url 'contas:cadastrar-aluno' %}" class="botao">Novo Aluno</a>
+    <br />
+    <table id="alunos" class="alunos">
+        <thead>
+            <tr>
+                <th>RA</th>
+                <th>Nome</th>
+                <th>Login</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+                <tr>
+                    <td>{{ aluno.ra }}</td>
+                    <td>{{ aluno.nome }}</td>
+                    <td>{{ aluno.login }}</td>
+                    <td>
+                        <a href="{% url 'contas:altera-aluno' aluno.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'contas:excluir-aluno' aluno.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ aluno.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir aluno?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}

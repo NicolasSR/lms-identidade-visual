@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Coordenadores</h1>
+
+    <a href="{% url 'contas:cadastrar-coordenador' %}" class="botao">Novo Coordenador</a>
+    <br />
+    <table id="coordenadores" class="alunos">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Login</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for coordenador in coordenadores %}
+                <tr>
+                    <td>{{ coordenador.nome }}</td>
+                    <td>{{ coordenador.login }}</td>
+                    <td>{{ coordenador.email }}</td>
+                    <td>
+                        <a href="{% url 'contas:altera-coordenador' coordenador.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'contas:excluir-coordenador' coordenador.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ coordenador.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir coordenador?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}
