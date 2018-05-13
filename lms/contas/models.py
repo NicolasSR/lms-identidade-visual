@@ -13,19 +13,19 @@ class Aluno(models.Model):
     cpf = models.CharField('CPF', max_length=20, blank=True, null=True)
 
 class Coordenador(models.Model):
-    login = models.CharField('Login', db_column='LOGIN', max_length=15)
+    login = models.CharField('Login', db_column='LOGIN', unique=True, max_length=15)
     senha = models.CharField('Senha', db_column='SENHA', max_length=8)
     nome = models.CharField('Nome', db_column='NOME', max_length=45)
-    email = models.CharField('E-mail', db_column='EMAIL', max_length=70)
+    email = models.CharField('E-mail', db_column='EMAIL', unique=True, max_length=70)
     celular = models.CharField('Celular', db_column='CELULAR', max_length=15)
     data_expiracao = models.DateField('Data Expiração', db_column='DTEXPIRACAO', blank=True, null=True)
 
 class Professor(models.Model):
-    login = models.CharField('Login', db_column='LOGIN', max_length=15)
+    login = models.CharField('Login', db_column='LOGIN', unique=True, max_length=15)
     senha = models.CharField('Senha', db_column='SENHA', max_length=8)
     nome = models.CharField('Nome', db_column='NOME', max_length=45)
-    email = models.CharField('E-mail', db_column='EMAIL', max_length=70)
-    celular = models.CharField('Celular', db_column='CELULAR', max_length=15)
+    email = models.CharField('E-mail', db_column='EMAIL', unique=True, max_length=70)
+    celular = models.CharField('Celular', db_column='CELULAR', unique=True, max_length=15)
     data_expiracao = models.DateField('Data Expiração', db_column='DTEXPIRACAO', blank=True, null=True)
     apelido = models.CharField('Apelido', db_column='APELIDO', max_length=20)
 
