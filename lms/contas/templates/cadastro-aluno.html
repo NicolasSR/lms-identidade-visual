@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block body %}
     <h1 class="text-center">Cadastro de Alunos</h1>
     <hr>
@@ -71,4 +72,5 @@
             </div>
         </div>
     </form>
+    <script src="{% static 'js/alunos.js' %}"></script>
 {% endblock %}

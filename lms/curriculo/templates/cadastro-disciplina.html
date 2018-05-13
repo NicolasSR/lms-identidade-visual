@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Disciplinas</h1>
+    <hr>
+
+    <form action="{% url 'curriculo:cadastrar-disciplina' %}" method="post">
+        <div class="linha">
+            {% csrf_token %}
+            <input type="number" name="id" hidden value="{{ disciplina.id }}">
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="nome">Nome:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="text" size="20"
+                    size="20" name="nome" id="nome" required value="{{ disciplina.nome }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="status">Status:</label>
+                    <label class="ast">*</label> <br>
+                    <select name="status">
+                        <option value="Aberta" {% if disciplina.status == 'Aberta' %}selected{% endif %}>Aberta</option>
+                        <option value="Fechada" {% if disciplina.status == 'Fechada' %}selected{% endif %}>Fechada</option>
+                    </select>
+                </div>
+                <div class="form-grupo">
+                    <label for="pratico">Percentual Prático:</label>
+                    <input type="number" size="20"
+                    size="20" name="pratico" id="pratico" value="{{ disciplina.percentual_pratico }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="competencias">Competências:</label>
+                    <textarea rows="10" name="competencias">{{ disciplina.competencias }}</textarea>
+                </div>
+                <div class="form-grupo">
+                    <label for="basica">Bibliografia Básica:</label>
+                    <textarea rows="10" name="basica">{{ disciplina.bibliografia_basica }}</textarea>
+                </div>
+                <div class="form-grupo">
+                    <label for="conteudo">Conteúdo Programatico:</label>
+                    <textarea rows="15" name="conteudo">{{ disciplina.conteudo_programatico }}</textarea>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-grupo">
+                    <label for="coordenador">Coordenador:</label>
+                    <label class="ast">*</label> <br>
+                    <select name="coordenador">
+                        {% for coordenador in coordenadores %}
+                            <option value="{{ coordenador.id }}"
+                                    {% if coordenador.id == disciplina.idcoordenador.id %}selected{% endif %}>
+                                {{ coordenador.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-grupo">
+                    <label for="cargahoraria">Carga Horária:</label>
+                    <label class="ast">*</label> <br>
+                    <input type="number" size="20"
+                    size="20" name="cargahoraria" id="cargahoraria" required value="{{ disciplina.carga_horaria }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="teorico">Percentual Teórico:</label>
+                    <input type="number" size="20"
+                    size="20" name="teorico" id="teorico" value="{{ disciplina.percentual_teorico }}">
+                </div>
+                <div class="form-grupo">
+                    <label for="habilidades">Habilidades:</label>
+                    <textarea rows="10" name="habilidades">{{ disciplina.habilidades }}</textarea>
+                </div>
+                <div class="form-grupo">
+                    <label for="complementar">Bibliografia Complementar:</label>
+                    <textarea rows="10" name="complementar">{{ disciplina.bibliografia_complementar }}</textarea>
+                </div>
+                <div class="form-grupo">
+                    <label for="ementa">Ementa:</label>
+                    <textarea rows="15" name="ementa">{{ disciplina.ementa }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="linha">
+            <div class="col-md-12">
+                <div class="form-grupo">
+                    <label for="ensino">Plano de Ensino:</label>
+                    <textarea rows="15" name="ensino">{{ disciplina.plano_ensino }}</textarea>
+                </div>
+            </div>
+        </div>
+        <div class="form-grupo">
+            <button type="submit" class="btn" style="margin-left: 50%;">Salvar Disciplina</button>
+        </div>
+    </form>
+{% endblock %}
