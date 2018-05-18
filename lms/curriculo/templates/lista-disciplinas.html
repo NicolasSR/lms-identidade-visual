@@ -12,6 +12,7 @@
                 <th>Coordenador</th>
                 <th></th>
                 <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -28,6 +29,9 @@
                             {% csrf_token %}
                             <a href="#" id="excluir" onclick="excluir({{ disciplina.id }}, this)">Excluir</a>
                         </form>
+                    </td>
+                    <td>
+                        <a href="{% url 'curriculo:cadastrar-disciplina-ofertada' %}">Vincular</a>
                     </td>
                 </tr>
             {% endfor %}

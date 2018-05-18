@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1 class="text-center">Cadastro de Disciplinas Ofertadas</h1>
+<hr>
+
+<form action="{% url 'curriculo:cadastrar-disciplina-ofertada' %}" method="post">
+    <div class="linha">
+        {% csrf_token %}
+        <input type="number" name="id" hidden value="{{ disciplina_ofertada.id }}">
+        <div class="col-md-6">
+            <div class="form-grupo">
+                <label for="professor">Professor:</label>
+                <label class="ast">*</label> <br>
+                <select name="professor">
+                    {% for professor in professores %}
+                        <option value="{{ professor.id }}"
+                                {% if professor.id == disciplina_ofertada.idprofessor.id %}selected{% endif %}>
+                            {{ professor.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-grupo">
+                <label for="curso">Curso:</label>
+                <label class="ast">*</label> <br>
+                <select name="curso">
+                    {% for curso in cursos %}
+                        <option value="{{ curso.id }}"
+                                {% if curso.id == disciplina_ofertada.idcurso.id %}selected{% endif %}>
+                            {{ curso.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-grupo">
+                <label for="datainicio">Data Início:</label>
+                <input type="date" size="20"
+                size="20" name="datainicio" id="datainicio" value="{{ datainicio }}">
+            </div>
+            <div class="form-grupo">
+                <label for="ano">Ano:</label>
+                <label class="ast">*</label> <br>
+                <input type="number" size="20"
+                size="20" name="ano" id="ano" value="{{ disciplina_ofertada.ano }}">
+            </div>
+            <div class="form-grupo">
+                <label for="turma">Turma:</label>
+                <label class="ast">*</label> <br>
+                <input type="text" size="20"
+                size="20" name="turma" id="turma" value="{{ disciplina_ofertada.turma }}">
+            </div>
+            <div class="form-grupo">
+                <label for="metodologia">Metodologia:</label>
+                <input type="text" size="20"
+                size="20" name="metodologia" id="metodologia" value="{{ disciplina_ofertada.metodologia }}">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-grupo">
+                <label for="coordenador">Coordenador:</label>
+                <label class="ast">*</label> <br>
+                <select name="coordenador">
+                    {% for coordenador in coordenadores %}
+                        <option value="{{ coordenador.id }}"
+                                {% if coordenador.id == disciplina_ofertada.idcoordenador.id %}selected{% endif %}>
+                            {{ coordenador.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-grupo">
+                <label for="disciplina">Disciplina:</label>
+                <label class="ast">*</label> <br>
+                <select name="disciplina">
+                    {% for disciplina in disciplinas %}
+                        <option value="{{ disciplina.id }}"
+                                {% if disciplina.id == disciplina_ofertada.iddisciplina.id %}selected{% endif %}>
+                            {{ disciplina.nome }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-grupo">
+                <label for="datafim">Data Fim:</label>
+                <input type="date" size="20"
+                size="20" name="datafim" id="datafim" value="{{ datafim }}">
+            </div>
+            <div class="form-grupo">
+                <label for="semestre">Semestre:</label>
+                <label class="ast">*</label> <br>
+                <input type="number" size="20"
+                size="20" name="semestre" id="semestre" value="{{ disciplina_ofertada.semestre }}">
+            </div>
+            <div class="form-grupo">
+                <label for="recursos">Recursos:</label>
+                <input type="text" size="20"
+                size="20" name="recursos" id="recursos" value="{{ disciplina_ofertada.recursos }}">
+            </div>
+            <div class="form-grupo">
+                <label for="criterio">Critério de Avaliação:</label>
+                <input type="text" size="20"
+                size="20" name="criterio" id="criterio" value="{{ disciplina_ofertada.criterio_avaliacao }}">
+            </div>
+        </div>
+    </div>
+    <div class="linha">
+        <div class="col-md-12">
+            <div class="form-grupo">
+                <label for="planoaulas">Plano de Aulas:</label>
+                <textarea rows="10" name="planoaulas">{{ disciplina_ofertada.planode_aulas }}</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="form-grupo">
+        <button type="submit" class="btn" style="margin-left: 50%;">Salvar Disciplina Ofertada</button>
+    </div>
+</form>
+{% endblock %}
