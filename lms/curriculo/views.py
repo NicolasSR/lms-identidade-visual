@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
-from curriculo.models import Curso, Disciplina
-from contas.models import Coordenador
+from curriculo.models import Curso, Disciplina, Disciplinaofertada
+from contas.models import Coordenador, Professor
 from datetime import datetime
 
 def cadastrar_curso(request):
@@ -58,3 +58,48 @@ def excluir_disciplina(request, disciplina_id):
     disciplina = Disciplina.objects.get(id=disciplina_id)
     disciplina.delete()
     return redirect('/curriculo/lista-disciplinas')
+
+def cadastrar_disciplina_ofertada(request):
+    if request.method == 'GET':
+        cursos = Curso.objects.all()
+        professores = Professor.objects.all()
+        coordenadores = Coordenador.objects.all()
+        disciplinas = Disciplina.objects.all()
+        return render(request, 'cadastro-disciplina-ofertada.html', {'cursos': cursos,
+                'professores': professores, 'coordenadores': coordenadores, 'disciplinas': disciplinas})
+    else:        
+        disciplina_ofertada = Disciplinaofertada(dtiniciomatricula=request.POST.get('datainicio'),
+            dtfimatricula=request.POST.get('datafim'), ano=request.POST.get('ano'), 
+            semestre=request.POST.get('semestre'), turma=request.POST.get('turma'), 
+            metodologia=request.POST.get('metodologia'), recursos=request.POST.get('recursos'),
+            criterio_avaliacao=request.POST.get('criterio'), planode_aulas=request.POST.get('planoaulas'),
+            idprofessor=Professor.objects.get(id=request.POST.get('professor')),
+            idcoordenador=Coordenador.objects.get(id=request.POST.get('coordenador')),
+            idcurso = Curso.objects.get(id=request.POST.get('curso')),
+            iddisciplina=Disciplina.objects.get(id=request.POST.get('disciplina')))
+        if request.POST.get('id'):
+            disciplina_ofertada.id = request.POST.get('id')
+        disciplina_ofertada.save()
+        return redirect('/curriculo/lista-disciplinas-ofertadas')
+
+def listar_disciplinas_ofertadas(request):
+    disciplinas_ofertadas = Disciplinaofertada.objects.all()
+    return render(request, 'lista-disciplinas-ofertadas.html', 
+        {'disciplinas_ofertadas': disciplinas_ofertadas})
+
+def alterar_disciplina_ofertada(request, id):
+    cursos = Curso.objects.all()
+    professores = Professor.objects.all()
+    coordenadores = Coordenador.objects.all()
+    disciplinas = Disciplina.objects.all()
+    disciplina_ofertada = Disciplinaofertada.objects.get(id=id)
+    datainicio = str(disciplina_ofertada.dtiniciomatricula)
+    datafim = str(disciplina_ofertada.dtfimatricula)
+    return render(request, 'cadastro-disciplina-ofertada.html', {'disciplina_ofertada': disciplina_ofertada,
+                'cursos': cursos, 'professores': professores, 'coordenadores': coordenadores, 
+                'disciplinas': disciplinas, 'datainicio': datainicio, 'datafim': datafim})
+
+def excluir_disciplina_ofertada(request, id):
+    disciplina_ofertada = Disciplinaofertada.objects.get(id=id)
+    disciplina_ofertada.delete()
+    return redirect('/curriculo/lista-disciplinas-ofertadas')

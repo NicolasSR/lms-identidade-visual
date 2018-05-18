@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block body %}
+    <h1 class="text-center">Lista de Disciplinas</h1>
+
+    <a href="{% url 'curriculo:cadastrar-disciplina-ofertada' %}" class="botao">Nova Disciplina Ofertada</a>
+    <br />
+    <table id="disciplinas" class="alunos">
+        <thead>
+            <tr>
+                <th>Professor</th>
+                <th>Ano</th>
+                <th>Semestre</th>
+                <th>Turma</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for disciplina_ofertada in disciplinas_ofertadas %}
+                <tr>
+                    <td>{{ disciplina_ofertada.idprofessor.nome }}</td>
+                    <td>{{ disciplina_ofertada.ano }}</td>
+                    <td>{{ disciplina_ofertada.semestre }}</td>
+                    <td>{{ disciplina_ofertada.turma }}</td>
+                    <td>
+                        <a href="{% url 'curriculo:altera-disciplina-ofertada' disciplina_ofertada.id %}">Editar</a>
+                    </td>
+                    <td>
+                        <form action="{% url 'curriculo:excluir-disciplina-ofertada' disciplina_ofertada.id %}" method="post">
+                            {% csrf_token %}
+                            <a href="#" id="excluir" onclick="excluir({{ disciplina_ofertada.id }}, this)">Excluir</a>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <script type="text/javascript">
+        function excluir(id, e) {
+            var form = e.parentNode;
+            if (confirm("Deseja realmente exluir disciplina ofertada?")){
+                form.submit()
+            }
+        }
+    </script>
+{% endblock %}
